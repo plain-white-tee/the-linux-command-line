@@ -8,38 +8,46 @@
 
 #### Shell Functions
 
-    name () {
-        commands
-        return
-    }
+```
+name () {
+	commands
+	return
+}
+```
 
 #### Local Variables
 defined with the `local` keyword.
 
-    funct_1 () {
-        local foo # variable foo local to funct_1
-        
-        foo=1
-    }
+```
+funct_1 () {
+local foo # variable foo local to funct_1
+      
+foo=1
+}
+```
     
 ##### Shell Functions in `.bashrc`
 
 Shell functions are preferred over aliases.
 You can add this to `.bashrc` to report disk space.
 
-    ds () {
-        echo "Disk Space Utilization For $HOSTNAME"
-        df -h
-    }
+```
+ds () {
+	echo "Disk Space Utilization For $HOSTNAME"
+	df -h
+}
+```
 
 ### 27 – Flow Control: Branching with if
 
-    x=5
-    if [ "$x" -eq 5 ]; then
-        echo "x equals 5."
-    else
-        echo "x does not equal 5."
-    fi
+```
+x=5
+if [ "$x" -eq 5 ]; then
+	echo "x equals 5."
+else
+	echo "x does not equal 5."
+fi
+```
 
 On the command line:
 `x=5`
@@ -134,4 +142,12 @@ The script `test-integer2a` uses `(( ))` to simplify script `test-integer2`.
 
 `[[ ]]` and `(( ))` support `&&` `||` and `!` logical operators.
 `test` supports `-a` `-o` and `!` logical operators.
+
+### 28 - Reading Keyboard Input
+
+#### read - Read Values from Standard Input
+
+`read` command reads a single line of standard input.
+`read [-options] [variable...]
+
 
