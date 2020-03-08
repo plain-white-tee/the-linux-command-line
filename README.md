@@ -10,8 +10,8 @@
 
 ```
 name () {
-	commands
-	return
+    commands
+    return
 }
 ```
 
@@ -20,9 +20,9 @@ defined with the `local` keyword.
 
 ```
 funct_1 () {
-local foo # variable foo local to funct_1
+    local foo # variable foo local to funct_1
       
-foo=1
+    foo=1
 }
 ```
     
@@ -33,8 +33,8 @@ You can add this to `.bashrc` to report disk space.
 
 ```
 ds () {
-	echo "Disk Space Utilization For $HOSTNAME"
-	df -h
+    echo "Disk Space Utilization For $HOSTNAME"
+    df -h
 }
 ```
 
@@ -43,9 +43,9 @@ ds () {
 ```
 x=5
 if [ "$x" -eq 5 ]; then
-	echo "x equals 5."
+    echo "x equals 5."
 else
-	echo "x does not equal 5."
+    echo "x does not equal 5."
 fi
 ```
 
@@ -148,6 +148,22 @@ The script `test-integer2a` uses `(( ))` to simplify script `test-integer2`.
 #### read - Read Values from Standard Input
 
 `read` command reads a single line of standard input.
-`read [-options] [variable...]
+`read [-options] [variable...]`
+
+`read` can assign input to multiple values.
+The script `read-multiple` shows how.
+
+##### IFS
+
+The shell variable `IFS` can be used to change the default word separator used by `read`.
+The script `read-ifs` changes the separator to `:` to read from `/etc/passwd`.
+
+The shell allows variable assignments immediately before a command.
+The assignment alters the environment only for that single command.
+The line that starts with `IFS=":"` does this.
+The `<<<` operator on the same line is a `here string`. It takes the line of data from
+the `/etc/passwd` file and feeds it into the standard input of the `read` command.
+
+#### Validating Input
 
 
