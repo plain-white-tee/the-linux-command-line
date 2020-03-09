@@ -166,4 +166,5 @@ the `/etc/passwd` file and feeds it into the standard input of the `read` comman
 
 #### Validating Input
 
+The script `read-validate` shows examples of input validation.
 
