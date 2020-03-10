@@ -155,7 +155,7 @@ The script `read-multiple` shows how.
 
 ##### IFS
 
-The shell variable `IFS` can be used to change the default word separator used by `read`.
+The shell variable `IFS` can be used to change the default word separator used by `read`.<br>
 The script `read-ifs` changes the separator to `:` to read from `/etc/passwd`.
 
 The shell allows variable assignments immediately before a command.
@@ -172,5 +172,10 @@ The script `read-validate` shows examples of input validation.
 
 The script `read-menu` shows an example of a menu-driven program.
 
-The script 'read-integer` uses the `test` command and a `here string` instead of the `[[ ]]` command.
+The script `read-integer` uses the `test` command and a `here string` instead of the `[[ ]]` command.
+
+### 29 - Flow Control: Looping with while / until
+
+The script `while-menu` uses a `while` loop to improve `read-menu`.
+
 
