@@ -168,3 +168,9 @@ the `/etc/passwd` file and feeds it into the standard input of the `read` comman
 
 The script `read-validate` shows examples of input validation.
 
+#### Menus
+
+The script `read-menu` shows an example of a menu-driven program.
+
+The script 'read-integer` uses the `test` command and a `here string` instead of the `[[ ]]` command.
+
