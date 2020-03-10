@@ -50,22 +50,22 @@ fi
 ```
 
 On the command line:
-`x=5`
+`x=5`<br>
 `if [ “$x” -eq 5 ]; then echo "equals 5"; else echo "does not equal 5"; fi`
 
 #### Exit Status
 
-`$?` parameter holds the exit status of the last command.
-`0` always means success. Any other number `1-255` means failure.
-`true` command always executes successfully.
+`$?` parameter holds the exit status of the last command.<br>
+`0` always means success. Any other number `1-255` means failure.<br>
+`true` command always executes successfully.<br>
 `false` command always executes unsuccessfully.
 
-The `if` statement really only evaluates the exit status of commands.
+The `if` statement really only evaluates the exit status of commands.<br>
 `if true; then echo "It's true."; fi`
 
 #### test
 
-The `test` command performs checks and comparisons.
+The `test` command performs checks and comparisons.<br>
 Most common form is:
 `[ expression ]`
 
@@ -125,13 +125,13 @@ The script `test-string` demonstrates string evaluation.
 
 The script `test-integer` demonstrates integer evaluation.
 
-`[[ expression ]]` adds regular expressions to `test`.
+`[[ expression ]]` adds regular expressions to `test`.<br>
 `string1 =~ regex`
 
-The script `test-integer` fails if INT does not contain an integer.
+The script `test-integer` fails if INT does not contain an integer.<br>
 The script `test-integer2` uses `[[ ]]` to fix the problem.
 
-`[[ ]]` also add pattern matching to the `==` operator. Makes `[[ ]]` useful for evaluating file and pathnames.
+`[[ ]]` also add pattern matching to the `==` operator. Makes `[[ ]]` useful for evaluating file and pathnames.<br>
 `if [[ $FILE == foo.* ]]; then`
 
 ##### (( )) - Designed for Integers
@@ -140,29 +140,28 @@ The script `test-integer2` uses `[[ ]]` to fix the problem.
 
 The script `test-integer2a` uses `(( ))` to simplify script `test-integer2`.
 
-`[[ ]]` and `(( ))` support `&&` `||` and `!` logical operators.
+`[[ ]]` and `(( ))` support `&&` `||` and `!` logical operators.<br>
 `test` supports `-a` `-o` and `!` logical operators.
 
 ### 28 - Reading Keyboard Input
 
 #### read - Read Values from Standard Input
 
-`read` command reads a single line of standard input.
+`read` command reads a single line of standard input.<br>
 `read [-options] [variable...]`
 
-`read` can assign input to multiple values.
+`read` can assign input to multiple values.<br>
 The script `read-multiple` shows how.
 
 ##### IFS
 
 The shell variable `IFS` can be used to change the default word separator used by `read`.<br>
-The script `read-ifs` changes the separator to `:` to read from `/etc/passwd`.
+The script `read-ifs` changes the separator to `:` to read from `/etc/passwd`.<br>
 
-The shell allows variable assignments immediately before a command.
-The assignment alters the environment only for that single command.
-The line that starts with `IFS=":"` does this.
-The `<<<` operator on the same line is a `here string`. It takes the line of data from
-the `/etc/passwd` file and feeds it into the standard input of the `read` command.
+The shell allows variable assignments immediately before a command.<br>
+The assignment alters the environment only for that single command.<br>
+The line that starts with `IFS=":"` does this.<br>
+The `<<<` operator on the same line is a `here string`. It takes the line of data from the `/etc/passwd` file and feeds it into the standard input of the `read` command.
 
 #### Validating Input
 
@@ -177,5 +176,13 @@ The script `read-integer` uses the `test` command and a `here string` instead of
 ### 29 - Flow Control: Looping with while / until
 
 The script `while-menu` uses a `while` loop to improve `read-menu`.
+
+The `until` command is the opposite of `while`, it continues until it receives a zero exit status.
+
+##### Reading Files with Loops
+
+`while` and `until` can process standard input.<br>
+The script `while-read` demonstrates.<br>
+The script `while-read2` uses while with piped input.
 
 
