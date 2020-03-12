@@ -185,4 +185,13 @@ The `until` command is the opposite of `while`, it continues until it receives a
 The script `while-read` demonstrates.<br>
 The script `while-read2` uses while with piped input.
 
+### 31 - Flow Control: Branching with `case`
+
+The script `case-menu` shows the syntax of `case`.
+
+##### Patterns
+
+The patterns used by `case` are the same as used by pathname expansion.
+
+The script `case-patterns` shows examples.
 
