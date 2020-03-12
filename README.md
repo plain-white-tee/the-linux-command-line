@@ -195,3 +195,28 @@ The patterns used by `case` are the same as used by pathname expansion.
 
 The script `case-patterns` shows examples.
 
+### 32 - Positional Parameters
+
+Use `$0`-`$9` to access command line/function parameters.<br>
+Use `$#` to access the number of arguments.
+
+##### `shift` - Getting Access to Many Arguments
+
+The script `posit-param2` shows how to use the `shift` command to sequentially move arguments down.<br>
+Try it with a large amount of arguments. Something like `posit-param2 $(ls /usr/bin)`.
+
+##### Simple Applications
+
+The script `file-info` uses positional parameters and `basename` to dynamically update the name of the script.
+
+##### Using Positional Parameters in Shell Functions
+
+Positional parameters work the same in shell functions. Bash functions automatically update the variable `FUNCNAME` to keep track of the currently executed shell function.
+
+#### Handling Positional Parameters en Masse
+
+`*` and `@` Special Parameters
+
+The script `posit-params3` demonstrates how to use these special parameters.
+
+#### A More Complete Application
