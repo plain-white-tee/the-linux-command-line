@@ -220,3 +220,27 @@ Positional parameters work the same in shell functions. Bash functions automatic
 The script `posit-params3` demonstrates how to use these special parameters.
 
 #### A More Complete Application
+
+Added positional parameters, interactivity and the option to output to a file in the `sys_info_page` script.
+
+### 33 - Flow Control: Looping with `for`
+
+#### `for`: Traditional Shell Form
+
+```
+for variable [ in words ]; do
+    commands
+done
+```
+
+`for i in A B C D; do echo $i; done`<br>
+`for i in {A..D}; do echo $i; done`<br>
+`for i in distros*.txt; do echo "$i"; done`
+
+#### `for`: C Language Form
+
+```
+for (( i=0; i<5; i=i+1 )); do
+    echo $i
+done
+```
