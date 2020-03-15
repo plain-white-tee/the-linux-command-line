@@ -131,7 +131,8 @@ The script `test-integer` demonstrates integer evaluation.
 The script `test-integer` fails if INT does not contain an integer.<br>
 The script `test-integer2` uses `[[ ]]` to fix the problem.
 
-`[[ ]]` also add pattern matching to the `==` operator. Makes `[[ ]]` useful for evaluating file and pathnames.<br>
+`[[ ]]` also add pattern matching to the `==` operator. Makes `[[ ]]` useful for<br>
+evaluating file and pathnames.<br>
 `if [[ $FILE == foo.* ]]; then`
 
 ##### (( )) - Designed for Integers
@@ -155,13 +156,16 @@ The script `read-multiple` shows how.
 
 ##### IFS
 
-The shell variable `IFS` can be used to change the default word separator used by `read`.<br>
+The shell variable `IFS` can be used to change the default word separator used<br>
+by `read`.<br>
 The script `read-ifs` changes the separator to `:` to read from `/etc/passwd`.<br>
 
 The shell allows variable assignments immediately before a command.<br>
 The assignment alters the environment only for that single command.<br>
 The line that starts with `IFS=":"` does this.<br>
-The `<<<` operator on the same line is a `here string`. It takes the line of data from the `/etc/passwd` file and feeds it into the standard input of the `read` command.
+The `<<<` operator on the same line is a `here string`. It takes the line of<br>
+data from the `/etc/passwd` file and feeds it into the standard input of the<br>
+`read` command.
 
 #### Validating Input
 
@@ -171,13 +175,15 @@ The script `read-validate` shows examples of input validation.
 
 The script `read-menu` shows an example of a menu-driven program.
 
-The script `read-integer` uses the `test` command and a `here string` instead of the `[[ ]]` command.
+The script `read-integer` uses the `test` command and a `here string` instead of<br>
+the `[[ ]]` command.
 
 ### 29 - Flow Control: Looping with while / until
 
 The script `while-menu` uses a `while` loop to improve `read-menu`.
 
-The `until` command is the opposite of `while`, it continues until it receives a zero exit status.
+The `until` command is the opposite of `while`, it continues until it receives a<br>
+zero exit status.
 
 ##### Reading Files with Loops
 
@@ -202,16 +208,20 @@ Use `$#` to access the number of arguments.
 
 ##### `shift` - Getting Access to Many Arguments
 
-The script `posit-param2` shows how to use the `shift` command to sequentially move arguments down.<br>
+The script `posit-param2` shows how to use the `shift` command to sequentially<br>
+move arguments down.<br>
 Try it with a large amount of arguments. Something like `posit-param2 $(ls /usr/bin)`.
 
 ##### Simple Applications
 
-The script `file-info` uses positional parameters and `basename` to dynamically update the name of the script.
+The script `file-info` uses positional parameters and `basename` to dynamically<br>
+update the name of the script.
 
 ##### Using Positional Parameters in Shell Functions
 
-Positional parameters work the same in shell functions. Bash functions automatically update the variable `FUNCNAME` to keep track of the currently executed shell function.
+Positional parameters work the same in shell functions. Bash functions<br>
+automatically update the variable `FUNCNAME` to keep track of the currently<br>
+executed shell function.
 
 #### Handling Positional Parameters en Masse
 
@@ -221,7 +231,11 @@ The script `posit-params3` demonstrates how to use these special parameters.
 
 #### A More Complete Application
 
-Added positional parameters, interactivity and the option to output to a file in the `sys_info_page` script.
+Added positional parameters, interactivity and the option to output to a file<br>
+in the `sys_info_page` script.
+
+##### Further Reading
+http://wiki.bash-hackers.org/scripting/posparams
 
 ### 33 - Flow Control: Looping with `for`
 
@@ -244,3 +258,16 @@ for (( i=0; i<5; i=i+1 )); do
     echo $i
 done
 ```
+
+The `longest-word` script uses a for loop to find the longest string in a file.
+
+If the optional `in` portion of `for` is omitted, `for` defaults to processing<br>
+positional params.
+The `longest-word2` script eliminates the `while` loop in favor of `for`.
+
+##### Further Reading
+http://tldp.org/LDP/abs/html/loops1.html
+
+### 34 - Strings and Numbers
+
+
