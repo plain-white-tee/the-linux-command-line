@@ -274,7 +274,7 @@ http://tldp.org/LDP/abs/html/loops1.html
 
 ##### Expansions That Return Variable Names
 
-`${!prefix*}`
+`${!prefix*}`<br>
 `${!prefix@}`<br>
 Both return the names of all variables beginning with `prefix`.
 
@@ -282,11 +282,11 @@ Both return the names of all variables beginning with `prefix`.
 
 `${#parameter}` expands into the length of the string contained in `parameter`.
 
-`${#parameter:offset}` expands to the string starting from index `offset`.<br>
-`${#parameter:offset:length}` expands to the string from index `offset` for `length` characters.
+`${parameter:offset}` expands to the string starting from index `offset`.<br>
+`${parameter:offset:length}` expands to the string from index `offset` for `length` characters.
 
-`${#parameter#pattern}`
-`${#parameter##pattern}`<br>
+`${parameter#pattern}`
+`${parameter##pattern}`<br>
 These both remove `pattern` from the leading part of string `parameter`. `pattern` is a wildcard. `#` removes the shortest match, `##` removes the longest.
 ```
 foo=file.txt.zip
@@ -295,3 +295,37 @@ echo ${foo#*.}
 echo ${foo##*.}
 > zip
 ```
+
+`${parameter%pattern}`<br>
+`${parameter%%pattern}`<br>
+These are the same as the `#` and `##` expansions except they remove text from the end of the string.
+
+`${parameter/pattern/string}`<br>
+`${parameter//pattern/string}`<br>
+`${parameter/#pattern/string}`<br>
+`${parameter/%pattern/string}`<br>
+This expansion perfroms search and replace on `parameter`. Text matching the wildcard `pattern` is replaced with `string`. In the first form only the first match is replaced. The `//` form replaces all matches. The `/#` form requires the match occur at the beginning of the string and the `/%` form requires it to occur at the end.
+
+The script `longest-word3` uses parameter expansion `${#j}` to replace command substitution `$(echo -n $j | wc -c)` and improve efficiency.
+
+##### Case Conversion
+
+
+The `declare` command can be used to convert strings to upper and lower case.
+```
+#!/bin/bash
+
+# ul-declare: demonstrate case conversion via declare
+
+declare -u upper
+declare -l lower
+
+if [[ $1 ]]; then
+    upper="$1"
+    lower="$1"
+    echo "$upper"
+    echo "$lower"
+fi
+```
+
+
