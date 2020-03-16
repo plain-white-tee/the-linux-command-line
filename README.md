@@ -328,4 +328,63 @@ if [[ $1 ]]; then
 fi
 ```
 
+`${parameter,pattern}` Expand the value of `parameter` into all lowercase. `pattern` is an optional shell pattern (ex `[A-F]`) that limits which characters are converted.<br>
+`${parameter,,pattern}` Expands `parameter` changing only first character to lowercase.<br>
+`${parameter^^pattern}` Expands the value of `parameter` into all uppercase.<br>
+`${parameter^pattern}` Expands `parameter` changing only the first character to uppercase.
 
+```
+#!/bin/bash
+
+# ul-param: demonstrate case conversion via parameter expansion
+
+if [[ "$1" ]]; then
+    echo "${1,,}"
+    echo "${1,}"
+    echo "${1^^}"
+    echo "${1^}"
+fi
+```
+
+#### Arithmetic Evaluation and Expansion
+
+`$((expression))` where `expression` is a valid arithmetic expression.
+
+##### Number Bases
+
+`0number` In arithmetic expressions, leading zero is for octal.
+`0xnumber` Hexadecimal notation.
+`base#number` `number` is in `base`.
+
+`echo $((0xff))`
+
+##### Unary Operators
+
+`-5` indicates a negative number. Be sure to add a leading space to avoid confusion.
+
+##### Simple Arithmetic
+
+`+`
+`-`
+`*`
+`/` Integer division
+`**` Exponentiation
+`%` Modulo
+
+##### Logic
+
+`expr1?expr2:expr3` Ternary operator.<br>
+Bash also uses the standard logical operators.
+
+#### `bc` - An Arbitrary Precision Calculator Language
+
+If higher-order math or floating-point numbers are needed, `bc` is an option. As well as Perl or AWK.
+
+##### Further Reading
+discussions of parameter expansion
+http://wiki.bash-hackers.org/syntax/pe 
+http://www.gnu.org/software/bash/manual/bashref.html#Shell-Parameter-Expansion
+
+### 35 - Arrays
+
+Bash only supports one-dimensional arrays.
