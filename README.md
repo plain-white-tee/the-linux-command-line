@@ -131,8 +131,7 @@ The script `test-integer` demonstrates integer evaluation.
 The script `test-integer` fails if INT does not contain an integer.<br>
 The script `test-integer2` uses `[[ ]]` to fix the problem.
 
-`[[ ]]` also add pattern matching to the `==` operator. Makes `[[ ]]` useful for<br>
-evaluating file and pathnames.<br>
+`[[ ]]` also add pattern matching to the `==` operator. Makes `[[ ]]` useful for evaluating file and pathnames.<br>
 `if [[ $FILE == foo.* ]]; then`
 
 ##### (( )) - Designed for Integers
@@ -156,16 +155,13 @@ The script `read-multiple` shows how.
 
 ##### IFS
 
-The shell variable `IFS` can be used to change the default word separator used<br>
-by `read`.<br>
-The script `read-ifs` changes the separator to `:` to read from `/etc/passwd`.<br>
+The shell variable `IFS` can be used to change the default word separator used by `read`.<br>
+The script `read-ifs` changes the separator to `:` to read from `/etc/passwd`.
 
 The shell allows variable assignments immediately before a command.<br>
 The assignment alters the environment only for that single command.<br>
 The line that starts with `IFS=":"` does this.<br>
-The `<<<` operator on the same line is a `here string`. It takes the line of<br>
-data from the `/etc/passwd` file and feeds it into the standard input of the<br>
-`read` command.
+The `<<<` operator on the same line is a `here string`. It takes the line of data from the `/etc/passwd` file and feeds it into the standard input of the `read` command.
 
 #### Validating Input
 
@@ -182,8 +178,7 @@ the `[[ ]]` command.
 
 The script `while-menu` uses a `while` loop to improve `read-menu`.
 
-The `until` command is the opposite of `while`, it continues until it receives a<br>
-zero exit status.
+The `until` command is the opposite of `while`, it continues until it receives a zero exit status.
 
 ##### Reading Files with Loops
 
@@ -208,20 +203,16 @@ Use `$#` to access the number of arguments.
 
 ##### `shift` - Getting Access to Many Arguments
 
-The script `posit-param2` shows how to use the `shift` command to sequentially<br>
-move arguments down.<br>
+The script `posit-param2` shows how to use the `shift` command to sequentially move arguments down.<br>
 Try it with a large amount of arguments. Something like `posit-param2 $(ls /usr/bin)`.
 
 ##### Simple Applications
 
-The script `file-info` uses positional parameters and `basename` to dynamically<br>
-update the name of the script.
+The script `file-info` uses positional parameters and `basename` to dynamically update the name of the script.
 
 ##### Using Positional Parameters in Shell Functions
 
-Positional parameters work the same in shell functions. Bash functions<br>
-automatically update the variable `FUNCNAME` to keep track of the currently<br>
-executed shell function.
+Positional parameters work the same in shell functions. Bash functions automatically update the variable `FUNCNAME` to keep track of the currently executed shell function.
 
 #### Handling Positional Parameters en Masse
 
@@ -231,8 +222,7 @@ The script `posit-params3` demonstrates how to use these special parameters.
 
 #### A More Complete Application
 
-Added positional parameters, interactivity and the option to output to a file<br>
-in the `sys_info_page` script.
+Added positional parameters, interactivity and the option to output to a file in the `sys_info_page` script.
 
 ##### Further Reading
 http://wiki.bash-hackers.org/scripting/posparams
@@ -261,8 +251,7 @@ done
 
 The `longest-word` script uses a for loop to find the longest string in a file.
 
-If the optional `in` portion of `for` is omitted, `for` defaults to processing<br>
-positional params.
+If the optional `in` portion of `for` is omitted, `for` defaults to processing positional params.<br>
 The `longest-word2` script eliminates the `while` loop in favor of `for`.
 
 ##### Further Reading
@@ -270,4 +259,39 @@ http://tldp.org/LDP/abs/html/loops1.html
 
 ### 34 - Strings and Numbers
 
+#### Parameter Expansion
 
+##### Basic Parameters
+
+`$a` or `${a}` are equivalent, but the braces are required if the parameter is adjacent to other text. Ex. `${a}_file`
+
+##### Expansions to Manage Empty Variables
+
+`${parameter:-word}` if `parameter` is unset or empty, this results in the value `word`.<br>
+`${parameter:=word}` if `parameter` is unset or empty, this results in the value `word` and sets `parameter` to the value of `word`.<br>
+`${parameter:?word}` if `parameter` is unset or empty, this causes the script to exit with an error and the contents of `word` are sent to standard error.<br>
+`${parameter:+word}` if `parameter` is unset or empty, the expansion results in nothing, If `parameter` isn't empty, the value of `word` is substituted for `parameter` but the value of `parameter` is not changed.
+
+##### Expansions That Return Variable Names
+
+`${!prefix*}`
+`${!prefix@}`<br>
+Both return the names of all variables beginning with `prefix`.
+
+##### String Operations
+
+`${#parameter}` expands into the length of the string contained in `parameter`.
+
+`${#parameter:offset}` expands to the string starting from index `offset`.<br>
+`${#parameter:offset:length}` expands to the string from index `offset` for `length` characters.
+
+`${#parameter#pattern}`
+`${#parameter##pattern}`<br>
+These both remove `pattern` from the leading part of string `parameter`. `pattern` is a wildcard. `#` removes the shortest match, `##` removes the longest.
+```
+foo=file.txt.zip
+echo ${foo#*.}
+> txt.zip
+echo ${foo##*.}
+> zip
+```
