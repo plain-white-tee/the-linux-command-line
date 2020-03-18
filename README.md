@@ -388,3 +388,58 @@ http://www.gnu.org/software/bash/manual/bashref.html#Shell-Parameter-Expansion
 ### 35 - Arrays
 
 Bash only supports one-dimensional arrays.
+
+#### Creating Arrays
+
+`a[1]=foo`<br>
+`echo ${a[1]}` braces are required to prevent pathname expansion.<br>
+`declare -a a` using `declare` to create the array `a`.
+`days=(Sun Mon Tue Wed Thu Fri Sat)` assigns values to the array `days` sequentially starting from `0`.<br>
+`days=([0]=Sun [1]=Mon [2]=Tue [3]=Wed [4]=Thu [5]=Fri [6]=Sat)` assigning values to indexes explicitly.
+
+#### Array Operations
+
+##### Outputting the Entire Contents of an Array
+
+`animals=("a dog" "a cat" "a fish")`<br>
+`for i in ${animals[*]}; do echo $i; done`<br> 
+`for i in ${animals[@]}; do echo $i; done`<br> 
+`for i in "${animals[*]}"; do echo $i; done`<br> 
+`for i in "${animals[@]}"; do echo $i; done` this syntax provides the "real" contents of the array.
+
+##### Determining the Number of Elements in an Array
+
+`a[100]=foo`<br>
+`echo ${#a[@]}` number of elements in array (1)<br>
+`echo ${#a[100]}` length of element 100 (3)<br>
+
+##### Finding the Indexes of Array Elements
+
+`${!array[*]}`<br>
+`${!array[@]}`
+
+`foo=([2]=a [4]=b [6]=c)`<br>
+`for i in "${!foo[@]}"; do echo $i; done` prints the indexes `2` `4` and `6`.
+
+##### Adding Elements to the End of an Array
+
+`foo=(a b c)`<br>
+`echo ${foo[@]}` `foo` is `a b c`<br>
+`foo+=(d e f)`<br>
+`echo ${foo[@]}` `foo` is now `a b c d e f`<br>
+
+##### Sorting an Array
+
+There is no direct way of sorting, but it can be done using `sort`.
+
+```
+#!/bin/bash
+
+# array-sort: Sort an array
+
+a=(f e d c b a)
+
+echo "Original array: ${a[@]}"
+a_sorted=($(for i in "${a[@]}"; do echo $i; done | sort))
+echo "Sorted array: ${a_sorted[@]}"
+```
