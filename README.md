@@ -443,3 +443,23 @@ echo "Original array: ${a[@]}"
 a_sorted=($(for i in "${a[@]}"; do echo $i; done | sort))
 echo "Sorted array: ${a_sorted[@]}"
 ```
+
+##### Deleting an Array
+
+Use the `unset` command to delete an array or a single array element.
+
+`unset foo`<br>
+`unset 'foo[2]'`
+
+#### Associative Arrays
+
+Associative arrays must be created with the `declare` command.
+
+```
+declare -A colors
+colors["red"]="#ff0000"
+colors["green"]="#00ff00"
+colors["blue"]="#0000ff"
+```
+
+`echo ${colors["blue"]}`
